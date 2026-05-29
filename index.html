@@ -40,15 +40,14 @@
       --gold:     #B8924A;
       --gold-lt:  #D4AA6A;
       --taupe:    #A89880;
-      --stone:    #C8BDB0;
       --cream:    #F5F0E8;
       --ivory:    #FAF7F2;
       --linen:    #EDE6DB;
       --txt:      #5A5450;
       --txt-lt:   #9C9088;
-      --gh:       'https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/';
       --fh:       'Cormorant Garamond', serif;
       --fb:       'Jost', sans-serif;
+      --gh:       'https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/';
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -186,17 +185,12 @@
     .hero-bg {
       position: absolute; inset: 0;
       background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephchairfull.JPG');
-      background-size: cover; background-position: center 20%;
+      background-size: cover; background-position: center 15%;
       opacity: 0.38;
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(
-        105deg,
-        rgba(24,23,21,.92) 0%,
-        rgba(24,23,21,.75) 45%,
-        rgba(24,23,21,.35) 100%
-      );
+      background: linear-gradient(105deg, rgba(24,23,21,.93) 0%, rgba(24,23,21,.72) 45%, rgba(24,23,21,.32) 100%);
     }
     .hero-vline {
       position: absolute; left: 56px; top: 18%; bottom: 18%;
@@ -209,8 +203,7 @@
       max-width: 1280px; margin: 0 auto; width: 100%;
     }
     .hero-eyebrow {
-      display: flex; align-items: center; gap: 16px;
-      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .15s forwards;
     }
     .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); flex-shrink: 0; }
@@ -233,8 +226,7 @@
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .6s forwards;
     }
     .hero-scroll {
-      position: absolute; bottom: 36px; left: 50%;
-      transform: translateX(-50%);
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 10px;
       opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
     }
@@ -256,12 +248,8 @@
     .intro-copy p:last-of-type { margin-bottom: 38px; }
 
     .intro-visual { position: relative; }
-    .intro-img {
-      position: relative; aspect-ratio: 4/5; overflow: hidden;
-    }
-    .intro-img img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center top;
-    }
+    .intro-img { position: relative; aspect-ratio: 4/5; overflow: hidden; }
+    .intro-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; }
     .intro-img::after {
       content: ''; position: absolute;
       top: 16px; right: -16px; bottom: -16px; left: 16px;
@@ -286,14 +274,30 @@
     .svc-header { max-width: 1280px; margin: 0 auto 72px; display: flex; justify-content: space-between; align-items: flex-end; }
     .svc-header h2 { font-family: var(--fh); font-size: clamp(34px, 4vw, 52px); font-weight: 300; color: var(--ink); line-height: 1.12; }
     .svc-header h2 em { font-style: italic; color: var(--gold); }
+
     .svc-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(168,152,128,.15); }
     .svc-card { background: var(--ivory); overflow: hidden; position: relative; transition: background .4s; }
-    .svc-card-img { aspect-ratio: 4/3; overflow: hidden; }
-    .svc-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.22,1,.36,1); }
-    .svc-card:hover .svc-card-img img { transform: scale(1.04); }
-    .svc-card-body { padding: 32px 30px 36px; }
+    .svc-card:hover { background: var(--linen); }
+
+    /* Key fix: fixed height image container with object-position to show full head */
+    .svc-card-img {
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+    .svc-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 8%; /* pulls frame down slightly so top of head is always visible */
+      transition: transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .svc-card:hover .svc-card-img img { transform: scale(1.03); }
+
     .svc-card-line { height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.22,1,.36,1); }
     .svc-card:hover .svc-card-line { transform: scaleX(1); }
+
+    .svc-card-body { padding: 28px 28px 34px; }
     .svc-num { font-family: var(--fh); font-size: 10px; color: var(--gold); opacity: .4; letter-spacing: .18em; margin-bottom: 10px; display: block; }
     .svc-card h3 { font-family: var(--fh); font-size: 22px; font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 10px; }
     .svc-card p { font-size: 12px; color: var(--txt); line-height: 1.75; margin-bottom: 18px; }
@@ -313,9 +317,18 @@
     .onco-list { list-style: none; margin-bottom: 36px; }
     .onco-list li { font-size: 12px; color: rgba(250,247,242,.55); padding: 11px 0; border-bottom: 1px solid rgba(250,247,242,.06); display: flex; align-items: center; gap: 14px; }
     .onco-list li::before { content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; opacity: .6; }
-    .onco-visual { position: relative; aspect-ratio: 3/4; overflow: hidden; }
-    .onco-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(20%) brightness(0.75); }
-    .onco-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,23,21,.5) 0%, transparent 50%); }
+
+    .onco-visual {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .onco-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 5%; /* ensure head is in frame */
+      filter: grayscale(15%) brightness(0.72);
+    }
+    .onco-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,23,21,.45) 0%, transparent 50%); }
 
     /* WHY */
     .s-why { padding: 136px 56px; background: var(--cream); }
@@ -335,7 +348,7 @@
     .pmu-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 112px; align-items: center; }
     .pmu-vis { position: relative; aspect-ratio: 1; overflow: hidden; }
     .pmu-vis::before { content: ''; position: absolute; top: -14px; left: -14px; right: 14px; bottom: 14px; border: 1px solid rgba(184,146,74,.12); pointer-events: none; z-index: 1; }
-    .pmu-vis img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .pmu-vis img { width: 100%; height: 100%; object-fit: cover; object-position: center 8%; }
     .pmu-copy h2 { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; color: var(--ink); line-height: 1.18; margin-bottom: 22px; }
     .pmu-copy h2 em { font-style: italic; color: var(--gold); }
     .pmu-copy p { font-size: 14px; color: var(--txt); line-height: 1.92; margin-bottom: 18px; }
@@ -345,13 +358,13 @@
     .pmu-list li::before { content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; }
     .pmu-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    /* SPRAY TAN FEATURE */
-    .s-tan { padding: 0; background: var(--ink); overflow: hidden; }
-    .tan-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; }
+    /* SPRAY TAN — full bleed editorial split */
+    .s-tan { background: var(--ink); overflow: hidden; }
+    .tan-wrap { max-width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
     .tan-photo { aspect-ratio: 1; overflow: hidden; }
-    .tan-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .tan-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; }
     .tan-copy { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
-    .tan-copy .eyebrow { color: var(--gold); opacity: .7; }
+    .tan-copy .eyebrow { color: rgba(184,146,74,.7); }
     .tan-copy h2 { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 300; color: var(--ivory); line-height: 1.15; margin-bottom: 22px; }
     .tan-copy h2 em { font-style: italic; color: var(--gold-lt); }
     .tan-copy p { font-size: 14px; color: rgba(250,247,242,.5); line-height: 1.9; margin-bottom: 18px; }
@@ -365,7 +378,7 @@
     .men-copy p { font-size: 14px; color: var(--txt); line-height: 1.92; margin-bottom: 18px; }
     .men-copy p:last-of-type { margin-bottom: 36px; }
     .men-vis { position: relative; aspect-ratio: 3/4; overflow: hidden; }
-    .men-vis img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .men-vis img { width: 100%; height: 100%; object-fit: cover; object-position: center 5%; }
     .men-vis::after { content: ''; position: absolute; top: 18px; right: -18px; bottom: -18px; left: 18px; border: 1px solid rgba(184,146,74,.12); pointer-events: none; }
 
     /* TESTIMONIALS */
@@ -389,7 +402,7 @@
 
     /* BOOKING */
     .s-book { padding: 160px 56px; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
-    .s-book-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephwalking.JPG'); background-size: cover; background-position: center 30%; opacity: .12; }
+    .s-book-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephsidesmile.JPG'); background-size: cover; background-position: center 10%; opacity: .1; }
     .book-inner { position: relative; z-index: 2; max-width: 540px; margin: 0 auto; }
     .book-inner h2 { font-family: var(--fh); font-size: clamp(40px, 5.5vw, 68px); font-weight: 300; color: var(--ivory); line-height: 1.06; margin-bottom: 22px; }
     .book-inner h2 em { font-style: italic; color: var(--gold-lt); }
@@ -445,6 +458,7 @@
       .tan-copy { padding: 48px 22px; }
       .svc-grid,.why-grid { grid-template-columns: 1fr; }
       .svc-header { flex-direction: column; align-items: flex-start; gap: 22px; }
+      .svc-card-img { height: 260px; }
       .lira-flex { flex-direction: column; gap: 18px; text-align: center; }
       .lira-sep { width: 36px; height: 1px; }
       .trust-bar { padding: 14px 22px; }
@@ -482,7 +496,7 @@
     </ul>
   </nav>
 
-  <!-- HERO — stephchairfull as background -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -543,7 +557,7 @@
     </div>
   </section>
 
-  <!-- SERVICES — with real photos -->
+  <!-- SERVICES — new photo assignments with corrected crops -->
   <section class="s-services">
     <div class="svc-header">
       <div>
@@ -556,8 +570,9 @@
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/flowersmakeupbrush.JPG"
-               alt="Permanent makeup tools and flowers — The Oasis Skincare & Wellness" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephbrushflowers.JPG"
+               alt="Permanent makeup — The Oasis Skincare & Wellness Roseville CA"
+               style="object-position: center 5%;" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
@@ -570,8 +585,9 @@
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/facialbrushsteph.JPG"
-               alt="Facial treatment at The Oasis Skincare & Wellness Roseville" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/facialbrushandbowl.JPG"
+               alt="Women's facial services — The Oasis Skincare & Wellness Roseville CA"
+               style="object-position: center 12%;" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
@@ -584,8 +600,9 @@
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephchair.JPG"
-               alt="Stephanie Dandini esthetician Roseville CA" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephsunglasses.JPG"
+               alt="Men's skincare services — The Oasis Skincare & Wellness Roseville CA"
+               style="object-position: center 5%;" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
@@ -598,8 +615,9 @@
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephbrownoutfit.JPG"
-               alt="Teen skincare consultation at The Oasis Skincare & Wellness" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephsidesmile.JPG"
+               alt="Teen skincare Roseville CA — The Oasis Skincare & Wellness"
+               style="object-position: center 5%;" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
@@ -612,8 +630,9 @@
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephstanding.JPG"
-               alt="Oncology skincare Roseville CA — The Oasis Skincare & Wellness" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephhandsonhips.JPG"
+               alt="Oncology skincare Roseville CA — The Oasis Skincare & Wellness"
+               style="object-position: center 5%;" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
@@ -626,8 +645,9 @@
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/faceprofiletanning.JPG"
-               alt="Spray tanning Roseville CA — The Oasis Skincare & Wellness" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/spraytangun.JPG"
+               alt="Spray tanning Roseville CA — The Oasis Skincare & Wellness"
+               style="object-position: center 8%;" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
@@ -641,7 +661,7 @@
     </div>
   </section>
 
-  <!-- ONCOLOGY — stephwalking as visual -->
+  <!-- ONCOLOGY — stephwalking -->
   <section class="s-onco">
     <div class="onco-wrap">
       <div class="onco-copy">
@@ -659,7 +679,7 @@
       </div>
       <div class="onco-visual">
         <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephwalking.JPG"
-             alt="Stephanie Dandini certified oncology esthetician Roseville CA" />
+             alt="Certified oncology esthetician Roseville CA — Stephanie Dandini" />
       </div>
     </div>
   </section>
@@ -695,12 +715,13 @@
     </div>
   </section>
 
-  <!-- PMU — flowersmakeupbrush + stephchair -->
+  <!-- PMU — stephbrushflowers feature -->
   <section class="s-pmu">
     <div class="pmu-wrap">
       <div class="pmu-vis">
-        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/flowersmakeupbrush.JPG"
-             alt="Permanent makeup tools — The Oasis Skincare & Wellness Roseville CA" />
+        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephbrushflowers.JPG"
+             alt="Permanent makeup Roseville CA — The Oasis Skincare & Wellness"
+             style="object-position: center 5%;" />
       </div>
       <div class="pmu-copy">
         <span class="eyebrow">Permanent Makeup</span>
@@ -722,12 +743,12 @@
     </div>
   </section>
 
-  <!-- SPRAY TAN FEATURE — full bleed editorial -->
+  <!-- SPRAY TAN — bougietanning full bleed -->
   <section class="s-tan">
     <div class="tan-wrap">
       <div class="tan-photo">
         <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/bougietanning.JPG"
-             alt="Spray tan results — The Oasis Skincare & Wellness Roseville CA" />
+             alt="Spray tan results Roseville CA — The Oasis Skincare & Wellness" />
       </div>
       <div class="tan-copy">
         <span class="eyebrow">Spray Tanning</span>
@@ -739,7 +760,7 @@
     </div>
   </section>
 
-  <!-- MEN — stephstanding -->
+  <!-- MEN — stephsmilesunglasses -->
   <section class="s-men">
     <div class="men-wrap">
       <div class="men-copy">
@@ -750,8 +771,9 @@
         <a href="https://theoasis916.com/mens-services" class="btn-ink">Explore Men's Services</a>
       </div>
       <div class="men-vis">
-        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephstanding.JPG"
-             alt="Professional esthetics studio — The Oasis Skincare & Wellness Roseville" />
+        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephsmilesunglasses.JPG"
+             alt="The Oasis Skincare & Wellness Roseville — men's esthetics services"
+             style="object-position: center 5%;" />
       </div>
     </div>
   </section>
@@ -788,7 +810,7 @@
     </div>
   </section>
 
-  <!-- BOOKING CTA — stephwalking subtle bg -->
+  <!-- BOOKING -->
   <section class="s-book">
     <div class="s-book-bg"></div>
     <div class="book-inner">
@@ -860,7 +882,6 @@
     </div>
   </footer>
 
-  <!-- FLOAT -->
   <a href="https://theoasis916.com/book" class="float-btn">Book Now</a>
 
   <script>
