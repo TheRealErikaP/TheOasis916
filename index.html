@@ -382,9 +382,9 @@
 
     /* SPRAY TAN */
     .s-tan { background: var(--ink); overflow: hidden; }
-    .tan-wrap { max-width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
-    .tan-photo { aspect-ratio: 3/4; overflow: hidden; }
-    .tan-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+    .tan-wrap { max-width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .tan-photo { overflow: hidden; min-height: 600px; }
+    .tan-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
     .tan-copy { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
     .tan-copy .eyebrow { color: rgba(176,154,136,.7); }
     .tan-copy h2 { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 300; color: var(--ivory); line-height: 1.15; margin-bottom: 22px; }
@@ -480,7 +480,7 @@
       .intro-wrap,.onco-wrap,.pmu-wrap,.men-wrap { grid-template-columns: 1fr; gap: 48px; }
       .intro-badge { left: 0; }
       .tan-wrap { grid-template-columns: 1fr; }
-      .tan-photo { aspect-ratio: 3/4; }
+      .tan-photo { min-height: 500px; }
       .tan-copy { padding: 48px 22px; }
       .svc-grid { grid-template-columns: repeat(2,1fr); }
       .why-grid { grid-template-columns: 1fr; }
