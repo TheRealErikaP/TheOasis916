@@ -35,25 +35,24 @@
 
   <style>
     :root {
-      --ink:       #181715;
-      --ink-soft:  #2E2C29;
-      --gold:      #B8924A;
-      --gold-lt:   #D4AA6A;
-      --taupe:     #A89880;
-      --stone:     #C8BDB0;
-      --cream:     #F5F0E8;
-      --ivory:     #FAF7F2;
-      --linen:     #EDE6DB;
-      --parchment: #E8DFD2;
-      --txt:       #5A5450;
-      --txt-lt:    #9C9088;
-      --fh:        'Cormorant Garamond', serif;
-      --fb:        'Jost', sans-serif;
+      --ink:      #181715;
+      --ink-soft: #2E2C29;
+      --gold:     #B8924A;
+      --gold-lt:  #D4AA6A;
+      --taupe:    #A89880;
+      --stone:    #C8BDB0;
+      --cream:    #F5F0E8;
+      --ivory:    #FAF7F2;
+      --linen:    #EDE6DB;
+      --txt:      #5A5450;
+      --txt-lt:   #9C9088;
+      --gh:       'https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/';
+      --fh:       'Cormorant Garamond', serif;
+      --fb:       'Jost', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--cream);
       color: var(--ink);
@@ -64,23 +63,18 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-
     a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
-    /* ── UTILITY ── */
+    /* UTILITY */
     .eyebrow {
-      font-family: var(--fb);
-      font-size: 9px; font-weight: 400;
+      font-family: var(--fb); font-size: 9px; font-weight: 400;
       letter-spacing: 0.32em; text-transform: uppercase;
-      color: var(--gold); display: block; margin-bottom: 18px;
+      color: var(--gold); display: block; margin-bottom: 16px;
     }
-    .rule {
-      display: block; width: 32px; height: 1px;
-      background: var(--gold); margin: 0 auto 18px;
-    }
-    .rule-left { margin: 0 0 18px; }
+    .rule { display: block; width: 32px; height: 1px; background: var(--gold); margin: 0 auto 18px; }
 
-    /* ── BUTTONS ── */
+    /* BUTTONS */
     .btn-ink {
       display: inline-block; background: var(--ink); color: var(--ivory);
       font-family: var(--fb); font-size: 9px; font-weight: 400;
@@ -103,8 +97,8 @@
       display: inline-block; background: transparent; color: var(--ivory);
       font-family: var(--fb); font-size: 9px; font-weight: 400;
       letter-spacing: 0.24em; text-transform: uppercase;
-      padding: 14px 36px; border: 1px solid rgba(250,247,242,.3);
-      transition: border-color .35s, color .35s; cursor: pointer;
+      padding: 14px 36px; border: 1px solid rgba(250,247,242,.32);
+      transition: border-color .35s; cursor: pointer;
     }
     .btn-ghost-lt:hover { border-color: var(--ivory); }
 
@@ -117,10 +111,10 @@
     }
     .btn-gold:hover { background: transparent; color: var(--gold); }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      padding: 28px 56px;
+      padding: 26px 56px;
       display: flex; align-items: center; justify-content: space-between;
       transition: background .5s, padding .5s, border-color .5s;
       border-bottom: 1px solid transparent;
@@ -128,15 +122,13 @@
     nav.scrolled {
       background: rgba(245,240,232,.97);
       backdrop-filter: blur(12px);
-      padding: 16px 56px;
+      padding: 15px 56px;
       border-bottom-color: rgba(168,152,128,.2);
     }
-
     .nav-logo {
-      font-family: var(--fh);
-      font-size: 15px; font-weight: 400; letter-spacing: 0.1em;
-      color: var(--ivory); transition: color .5s;
-      line-height: 1.3; white-space: nowrap;
+      font-family: var(--fh); font-size: 15px; font-weight: 400;
+      letter-spacing: .1em; color: var(--ivory);
+      transition: color .5s; line-height: 1.3; white-space: nowrap;
     }
     nav.scrolled .nav-logo { color: var(--ink); }
     .nav-logo em { font-style: normal; color: var(--gold); }
@@ -144,666 +136,296 @@
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links > li > a {
       font-family: var(--fb); font-size: 9px; font-weight: 400;
-      letter-spacing: 0.2em; text-transform: uppercase;
+      letter-spacing: .2em; text-transform: uppercase;
       color: rgba(250,247,242,.6); transition: color .35s;
       position: relative; padding-bottom: 2px;
     }
     nav.scrolled .nav-links > li > a { color: var(--txt); }
     .nav-links > li > a::after {
-      content: ''; position: absolute;
-      bottom: 0; left: 0; width: 0; height: 1px;
-      background: var(--gold); transition: width .35s;
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .35s;
     }
     .nav-links > li > a:hover::after { width: 100%; }
     .nav-links > li > a:hover { color: var(--ivory); }
     nav.scrolled .nav-links > li > a:hover { color: var(--ink); }
 
     .nav-book {
-      font-size: 9px !important; letter-spacing: 0.2em;
+      font-size: 9px !important; letter-spacing: .2em;
       color: var(--gold) !important;
-      border: 1px solid rgba(184,146,74,.5);
-      padding: 9px 20px;
+      border: 1px solid rgba(184,146,74,.5); padding: 9px 20px;
       transition: background .35s, color .35s, border-color .35s !important;
     }
-    .nav-book:hover {
-      background: var(--gold) !important;
-      color: var(--ivory) !important;
-      border-color: var(--gold) !important;
-    }
+    .nav-book:hover { background: var(--gold) !important; color: var(--ivory) !important; border-color: var(--gold) !important; }
     .nav-book::after { display: none !important; }
 
     .nav-item { position: relative; }
     .dropdown {
-      position: absolute; top: calc(100% + 16px); left: 50%;
+      position: absolute; top: calc(100% + 14px); left: 50%;
       transform: translateX(-50%) translateY(6px);
-      background: var(--ivory);
-      border-top: 1px solid var(--gold);
+      background: var(--ivory); border-top: 1px solid var(--gold);
       box-shadow: 0 16px 48px rgba(24,23,21,.08);
       min-width: 200px; opacity: 0; visibility: hidden;
       transition: opacity .35s, visibility .35s, transform .35s;
       list-style: none; padding: 10px 0;
     }
-    .nav-item:hover .dropdown {
-      opacity: 1; visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
+    .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
     .dropdown li a {
       display: block; padding: 9px 22px;
-      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
       color: var(--txt) !important; transition: color .2s, padding-left .25s;
     }
     .dropdown li a::after { display: none !important; }
     .dropdown li a:hover { color: var(--gold) !important; padding-left: 28px; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
-      min-height: 100vh;
+      min-height: 100vh; position: relative;
+      display: flex; align-items: center; overflow: hidden;
       background: var(--ink);
-      position: relative; display: flex; align-items: center; overflow: hidden;
     }
-
-    /* Subtle paper-like grain texture via SVG */
-    .hero::before {
-      content: '';
+    .hero-bg {
       position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 200px;
-      opacity: 0.5;
-      pointer-events: none;
+      background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephchairfull.JPG');
+      background-size: cover; background-position: center 20%;
+      opacity: 0.38;
     }
-
-    .hero-warm {
+    .hero-overlay {
       position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 68% 42%, rgba(184,146,74,.06) 0%, transparent 52%),
-        radial-gradient(ellipse at 12% 78%, rgba(245,240,232,.03) 0%, transparent 42%);
+      background: linear-gradient(
+        105deg,
+        rgba(24,23,21,.92) 0%,
+        rgba(24,23,21,.75) 45%,
+        rgba(24,23,21,.35) 100%
+      );
     }
-
     .hero-vline {
-      position: absolute; left: 56px; top: 20%; bottom: 20%;
+      position: absolute; left: 56px; top: 18%; bottom: 18%;
       width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(184,146,74,.18), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(184,146,74,.2), transparent);
     }
-
     .hero-inner {
       position: relative; z-index: 2;
       padding: 150px 56px 110px;
       max-width: 1280px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
     }
-
     .hero-eyebrow {
       display: flex; align-items: center; gap: 16px;
       margin-bottom: 32px;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .15s forwards;
     }
-    .hero-eyebrow::before {
-      content: ''; width: 24px; height: 1px; background: var(--gold); flex-shrink: 0;
-    }
-    .hero-eyebrow span {
-      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
-    }
-
+    .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .hero-eyebrow span { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
     .hero-h1 {
       font-family: var(--fh);
-      font-size: clamp(52px, 6.8vw, 92px);
+      font-size: clamp(52px, 7vw, 96px);
       font-weight: 300; line-height: 1.02; color: var(--ivory);
-      margin-bottom: 30px;
+      margin-bottom: 30px; max-width: 700px;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .3s forwards;
     }
     .hero-h1 em { font-style: italic; color: var(--gold-lt); }
-
     .hero-sub {
-      font-size: 13px; font-weight: 300;
-      color: rgba(250,247,242,.42); line-height: 1.9;
-      max-width: 390px; margin-bottom: 48px;
+      font-size: 13px; color: rgba(250,247,242,.5);
+      line-height: 1.9; max-width: 420px; margin-bottom: 48px;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .45s forwards;
     }
-
     .hero-btns {
       display: flex; gap: 14px; flex-wrap: wrap;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .6s forwards;
     }
-
-    .hero-photo-col {
-      opacity: 0; animation: fadeIn 1.4s ease .5s forwards;
-      position: relative;
-    }
-
-    .hero-frame {
-      position: relative; aspect-ratio: 3/4; overflow: hidden;
-      background: var(--ink-soft);
-    }
-    .hero-frame::before {
-      content: ''; position: absolute; inset: 18px;
-      border: 1px solid rgba(184,146,74,.15); z-index: 2; pointer-events: none;
-    }
-    .hero-frame-inner {
-      width: 100%; height: 100%;
-      background: linear-gradient(165deg, #272521 0%, #1e1c1a 100%);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-frame-inner p {
-      font-family: var(--fh); font-style: italic; font-size: 12px;
-      color: rgba(184,146,74,.2); letter-spacing: .08em;
-    }
-
-    .hero-tag {
-      position: absolute; bottom: -16px; left: -16px;
-      background: var(--gold); padding: 22px 28px; z-index: 3;
-    }
-    .hero-tag .tn {
-      font-family: var(--fh); font-size: 40px; font-weight: 300;
-      color: var(--ivory); line-height: 1; display: block;
-    }
-    .hero-tag .tl {
-      font-family: var(--fb); font-size: 8px; letter-spacing: .22em;
-      text-transform: uppercase; color: rgba(250,247,242,.7);
-    }
-
     .hero-scroll {
       position: absolute; bottom: 36px; left: 50%;
       transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 10px;
       opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
     }
-    .hero-scroll span {
-      font-size: 8px; letter-spacing: .32em; text-transform: uppercase;
-      color: rgba(250,247,242,.22);
-    }
-    .scroll-line {
-      width: 1px; height: 44px;
-      background: linear-gradient(to bottom, rgba(184,146,74,.6), transparent);
-      animation: breathe 2.2s ease infinite;
-    }
+    .hero-scroll span { font-size: 8px; letter-spacing: .32em; text-transform: uppercase; color: rgba(250,247,242,.22); }
+    .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, rgba(184,146,74,.6), transparent); animation: breathe 2.2s ease infinite; }
 
-    /* ── TRUST BAR ── */
-    .trust-bar {
-      background: var(--linen);
-      border-bottom: 1px solid rgba(168,152,128,.25);
-      padding: 18px 56px;
-    }
-    .trust-inner {
-      max-width: 1280px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: center;
-      gap: 40px; flex-wrap: wrap;
-    }
-    .t-item {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--txt);
-    }
-    .t-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    /* TRUST BAR */
+    .trust-bar { background: var(--linen); border-bottom: 1px solid rgba(168,152,128,.25); padding: 17px 56px; }
+    .trust-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .t-item { display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--txt); }
+    .t-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
-    /* ── INTRO ── */
+    /* INTRO */
     .s-intro { padding: 136px 56px; background: var(--ivory); }
-    .intro-wrap {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 112px; align-items: center;
-    }
-
-    .intro-copy h2 {
-      font-family: var(--fh);
-      font-size: clamp(34px, 4vw, 54px);
-      font-weight: 300; line-height: 1.12; color: var(--ink); margin-bottom: 28px;
-    }
+    .intro-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 112px; align-items: center; }
+    .intro-copy h2 { font-family: var(--fh); font-size: clamp(34px, 4vw, 54px); font-weight: 300; line-height: 1.12; color: var(--ink); margin-bottom: 28px; }
     .intro-copy h2 em { font-style: italic; color: var(--gold); }
-    .intro-copy p {
-      font-size: 14px; color: var(--txt); line-height: 1.92; margin-bottom: 20px;
-    }
+    .intro-copy p { font-size: 14px; color: var(--txt); line-height: 1.92; margin-bottom: 20px; }
     .intro-copy p:last-of-type { margin-bottom: 38px; }
 
     .intro-visual { position: relative; }
     .intro-img {
       position: relative; aspect-ratio: 4/5; overflow: hidden;
-      background: var(--linen);
+    }
+    .intro-img img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
     }
     .intro-img::after {
       content: ''; position: absolute;
       top: 16px; right: -16px; bottom: -16px; left: 16px;
       border: 1px solid rgba(184,146,74,.14); pointer-events: none;
     }
-    .intro-img-inner {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #ede6db, #e3d9cc);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .intro-img-inner p {
-      font-family: var(--fh); font-style: italic; font-size: 12px;
-      color: rgba(168,152,128,.45);
-    }
     .intro-badge {
       position: absolute; bottom: -20px; left: -20px;
       background: var(--ink); padding: 22px 26px; z-index: 2;
     }
-    .intro-badge span {
-      font-size: 8px; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--gold); display: block; margin-bottom: 5px;
-    }
-    .intro-badge p {
-      font-family: var(--fh); font-size: 14px; font-style: italic;
-      color: var(--ivory); margin: 0;
-    }
+    .intro-badge span { font-size: 8px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 5px; }
+    .intro-badge p { font-family: var(--fh); font-size: 14px; font-style: italic; color: var(--ivory); margin: 0; }
 
-    /* ── EDITORIAL QUOTE ── */
-    .s-pull {
-      padding: 96px 56px;
-      background: var(--cream);
-      text-align: center;
-      border-top: 1px solid rgba(168,152,128,.18);
-      border-bottom: 1px solid rgba(168,152,128,.18);
-    }
+    /* PULL QUOTE */
+    .s-pull { padding: 96px 56px; background: var(--cream); text-align: center; border-top: 1px solid rgba(168,152,128,.18); border-bottom: 1px solid rgba(168,152,128,.18); }
     .pull-inner { max-width: 760px; margin: 0 auto; }
-    .pull-inner blockquote {
-      font-family: var(--fh);
-      font-size: clamp(26px, 3.5vw, 42px);
-      font-weight: 300; font-style: italic;
-      color: var(--ink); line-height: 1.45;
-      margin-bottom: 28px;
-    }
+    .pull-inner blockquote { font-family: var(--fh); font-size: clamp(24px, 3.2vw, 40px); font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.45; margin-bottom: 26px; }
     .pull-inner blockquote em { color: var(--gold); font-style: normal; }
-    .pull-inner cite {
-      font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
-      color: var(--taupe); font-style: normal;
-    }
+    .pull-inner cite { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--taupe); font-style: normal; }
 
-    /* ── SERVICES ── */
+    /* SERVICES */
     .s-services { padding: 136px 56px; background: var(--ivory); }
-    .svc-header {
-      max-width: 1280px; margin: 0 auto 72px;
-      display: flex; justify-content: space-between; align-items: flex-end;
-    }
-    .svc-header h2 {
-      font-family: var(--fh);
-      font-size: clamp(34px, 4vw, 52px);
-      font-weight: 300; color: var(--ink); line-height: 1.12;
-    }
+    .svc-header { max-width: 1280px; margin: 0 auto 72px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .svc-header h2 { font-family: var(--fh); font-size: clamp(34px, 4vw, 52px); font-weight: 300; color: var(--ink); line-height: 1.12; }
     .svc-header h2 em { font-style: italic; color: var(--gold); }
-
-    .svc-grid {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 1px; background: rgba(168,152,128,.15);
-    }
-    .svc-card {
-      background: var(--ivory); padding: 44px 36px;
-      position: relative; overflow: hidden;
-      transition: background .4s;
-    }
-    .svc-card-line {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1px; background: var(--gold);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .5s cubic-bezier(.22,1,.36,1);
-    }
-    .svc-card:hover { background: var(--cream); }
+    .svc-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(168,152,128,.15); }
+    .svc-card { background: var(--ivory); overflow: hidden; position: relative; transition: background .4s; }
+    .svc-card-img { aspect-ratio: 4/3; overflow: hidden; }
+    .svc-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .svc-card:hover .svc-card-img img { transform: scale(1.04); }
+    .svc-card-body { padding: 32px 30px 36px; }
+    .svc-card-line { height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.22,1,.36,1); }
     .svc-card:hover .svc-card-line { transform: scaleX(1); }
-
-    .svc-num {
-      font-family: var(--fh); font-size: 10px; color: var(--gold);
-      opacity: .4; letter-spacing: .18em;
-      margin-bottom: 18px; display: block;
-    }
-    .svc-card h3 {
-      font-family: var(--fh); font-size: 24px; font-weight: 400;
-      color: var(--ink); line-height: 1.2; margin-bottom: 14px;
-    }
-    .svc-card p {
-      font-size: 13px; color: var(--txt); line-height: 1.78; margin-bottom: 26px;
-    }
-    .svc-arrow {
-      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--gold); display: flex; align-items: center; gap: 8px;
-      transition: gap .35s;
-    }
+    .svc-num { font-family: var(--fh); font-size: 10px; color: var(--gold); opacity: .4; letter-spacing: .18em; margin-bottom: 10px; display: block; }
+    .svc-card h3 { font-family: var(--fh); font-size: 22px; font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 10px; }
+    .svc-card p { font-size: 12px; color: var(--txt); line-height: 1.75; margin-bottom: 18px; }
+    .svc-arrow { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 8px; transition: gap .35s; }
     .svc-arrow::after { content: '→'; }
     .svc-card:hover .svc-arrow { gap: 14px; }
 
-    /* ── ONCOLOGY — warm dark, no green ── */
-    .s-onco {
-      padding: 120px 56px;
-      background: #1E1C1A;
-      position: relative; overflow: hidden;
-    }
-    .s-onco::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 80% 50%, rgba(184,146,74,.04) 0%, transparent 55%);
-    }
-    .onco-wrap {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 96px; align-items: center; position: relative; z-index: 2;
-    }
+    /* ONCOLOGY */
+    .s-onco { padding: 120px 56px; background: #1E1C1A; position: relative; overflow: hidden; }
+    .s-onco::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 50%, rgba(184,146,74,.04) 0%, transparent 55%); }
+    .onco-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; position: relative; z-index: 2; }
     .onco-copy .eyebrow { color: rgba(184,146,74,.55); }
-    .onco-copy h2 {
-      font-family: var(--fh);
-      font-size: clamp(30px, 3.5vw, 46px);
-      font-weight: 300; color: var(--ivory); line-height: 1.15; margin-bottom: 22px;
-    }
+    .onco-copy h2 { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 300; color: var(--ivory); line-height: 1.15; margin-bottom: 22px; }
     .onco-copy h2 em { font-style: italic; color: var(--gold-lt); }
-    .onco-copy p {
-      font-size: 14px; color: rgba(250,247,242,.48);
-      line-height: 1.9; margin-bottom: 18px;
-    }
+    .onco-copy p { font-size: 14px; color: rgba(250,247,242,.48); line-height: 1.9; margin-bottom: 18px; }
     .onco-copy p:last-of-type { margin-bottom: 32px; }
     .onco-list { list-style: none; margin-bottom: 36px; }
-    .onco-list li {
-      font-size: 12px; color: rgba(250,247,242,.55);
-      padding: 11px 0; border-bottom: 1px solid rgba(250,247,242,.06);
-      display: flex; align-items: center; gap: 14px;
-    }
-    .onco-list li::before {
-      content: ''; width: 16px; height: 1px;
-      background: var(--gold); flex-shrink: 0; opacity: .6;
-    }
+    .onco-list li { font-size: 12px; color: rgba(250,247,242,.55); padding: 11px 0; border-bottom: 1px solid rgba(250,247,242,.06); display: flex; align-items: center; gap: 14px; }
+    .onco-list li::before { content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; opacity: .6; }
+    .onco-visual { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+    .onco-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(20%) brightness(0.75); }
+    .onco-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,23,21,.5) 0%, transparent 50%); }
 
-    .onco-right {
-      display: flex; align-items: center; justify-content: center;
-    }
-    .onco-emblem {
-      text-align: center; padding: 60px 40px;
-      border: 1px solid rgba(184,146,74,.12);
-      position: relative;
-    }
-    .onco-emblem::before {
-      content: ''; position: absolute;
-      top: 8px; right: 8px; bottom: 8px; left: 8px;
-      border: 1px solid rgba(184,146,74,.06);
-    }
-    .onco-emblem h3 {
-      font-family: var(--fh); font-size: 13px; font-style: italic;
-      color: rgba(250,247,242,.35); letter-spacing: .1em;
-      line-height: 2; margin-bottom: 14px;
-    }
-    .onco-emblem span {
-      font-size: 8px; letter-spacing: .26em; text-transform: uppercase; color: var(--gold);
-      opacity: .6;
-    }
-
-    /* ── WHY ── */
+    /* WHY */
     .s-why { padding: 136px 56px; background: var(--cream); }
     .why-hd { max-width: 1280px; margin: 0 auto 80px; text-align: center; }
-    .why-hd h2 {
-      font-family: var(--fh);
-      font-size: clamp(34px, 4vw, 52px);
-      font-weight: 300; line-height: 1.12; color: var(--ink);
-    }
+    .why-hd h2 { font-family: var(--fh); font-size: clamp(34px, 4vw, 52px); font-weight: 300; line-height: 1.12; color: var(--ink); }
     .why-hd h2 em { font-style: italic; color: var(--gold); }
-
-    .why-grid {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 1px; background: rgba(168,152,128,.14);
-    }
-    .why-card {
-      background: var(--cream); padding: 48px 28px;
-      text-align: center; transition: background .35s;
-    }
+    .why-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(168,152,128,.14); }
+    .why-card { background: var(--cream); padding: 48px 28px; text-align: center; transition: background .35s; }
     .why-card:hover { background: var(--ivory); }
-    .why-icon {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(184,146,74,.28);
-      margin: 0 auto 22px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .why-icon svg {
-      width: 16px; height: 16px;
-      stroke: var(--gold); fill: none; stroke-width: 1.5;
-    }
-    .why-card h3 {
-      font-family: var(--fh); font-size: 19px; font-weight: 400;
-      color: var(--ink); margin-bottom: 10px;
-    }
+    .why-icon { width: 40px; height: 40px; border: 1px solid rgba(184,146,74,.28); margin: 0 auto 22px; display: flex; align-items: center; justify-content: center; }
+    .why-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .why-card h3 { font-family: var(--fh); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 10px; }
     .why-card p { font-size: 13px; color: var(--txt); line-height: 1.78; }
 
-    /* ── PMU ── */
+    /* PMU */
     .s-pmu { padding: 136px 56px; background: var(--ivory); }
-    .pmu-wrap {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 112px; align-items: center;
-    }
-    .pmu-vis {
-      position: relative; aspect-ratio: 1; overflow: hidden;
-      background: var(--linen);
-    }
-    .pmu-vis::before {
-      content: ''; position: absolute;
-      top: -14px; left: -14px; right: 14px; bottom: 14px;
-      border: 1px solid rgba(184,146,74,.12); pointer-events: none;
-    }
-    .pmu-vis-inner {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #ede6db, #dfd6c8);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .pmu-vis-inner p {
-      font-family: var(--fh); font-style: italic; font-size: 12px;
-      color: rgba(168,152,128,.42);
-    }
-    .pmu-copy h2 {
-      font-family: var(--fh);
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 300; color: var(--ink); line-height: 1.18; margin-bottom: 22px;
-    }
+    .pmu-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 112px; align-items: center; }
+    .pmu-vis { position: relative; aspect-ratio: 1; overflow: hidden; }
+    .pmu-vis::before { content: ''; position: absolute; top: -14px; left: -14px; right: 14px; bottom: 14px; border: 1px solid rgba(184,146,74,.12); pointer-events: none; z-index: 1; }
+    .pmu-vis img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .pmu-copy h2 { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; color: var(--ink); line-height: 1.18; margin-bottom: 22px; }
     .pmu-copy h2 em { font-style: italic; color: var(--gold); }
-    .pmu-copy p {
-      font-size: 14px; color: var(--txt); line-height: 1.92; margin-bottom: 18px;
-    }
+    .pmu-copy p { font-size: 14px; color: var(--txt); line-height: 1.92; margin-bottom: 18px; }
     .pmu-copy p:last-of-type { margin-bottom: 30px; }
     .pmu-list { list-style: none; margin-bottom: 36px; }
-    .pmu-list li {
-      font-size: 13px; color: var(--txt);
-      padding: 10px 0; border-bottom: 1px solid rgba(168,152,128,.22);
-      display: flex; align-items: center; gap: 14px;
-    }
-    .pmu-list li::before {
-      content: ''; width: 16px; height: 1px;
-      background: var(--gold); flex-shrink: 0;
-    }
+    .pmu-list li { font-size: 13px; color: var(--txt); padding: 10px 0; border-bottom: 1px solid rgba(168,152,128,.22); display: flex; align-items: center; gap: 14px; }
+    .pmu-list li::before { content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; }
     .pmu-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    /* ── MEN — warm dark, restrained ── */
-    .s-men {
-      padding: 136px 56px;
-      background: var(--ink);
-      position: relative; overflow: hidden;
-    }
-    .s-men::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 20% 60%, rgba(184,146,74,.03) 0%, transparent 50%);
-    }
-    .men-wrap {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 112px; align-items: center; position: relative; z-index: 2;
-    }
-    .men-copy .eyebrow { color: var(--gold); opacity: .7; }
-    .men-copy h2 {
-      font-family: var(--fh);
-      font-size: clamp(30px, 3.5vw, 48px);
-      font-weight: 300; color: var(--ivory); line-height: 1.12; margin-bottom: 22px;
-    }
-    .men-copy h2 em { font-style: italic; color: var(--gold-lt); }
-    .men-copy p {
-      font-size: 14px; color: rgba(250,247,242,.44);
-      line-height: 1.92; margin-bottom: 18px;
-    }
+    /* SPRAY TAN FEATURE */
+    .s-tan { padding: 0; background: var(--ink); overflow: hidden; }
+    .tan-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; }
+    .tan-photo { aspect-ratio: 1; overflow: hidden; }
+    .tan-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .tan-copy { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
+    .tan-copy .eyebrow { color: var(--gold); opacity: .7; }
+    .tan-copy h2 { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 300; color: var(--ivory); line-height: 1.15; margin-bottom: 22px; }
+    .tan-copy h2 em { font-style: italic; color: var(--gold-lt); }
+    .tan-copy p { font-size: 14px; color: rgba(250,247,242,.5); line-height: 1.9; margin-bottom: 18px; }
+    .tan-copy p:last-of-type { margin-bottom: 34px; }
+
+    /* MEN */
+    .s-men { padding: 136px 56px; background: var(--linen); }
+    .men-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 112px; align-items: center; }
+    .men-copy h2 { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 48px); font-weight: 300; color: var(--ink); line-height: 1.12; margin-bottom: 22px; }
+    .men-copy h2 em { font-style: italic; color: var(--gold); }
+    .men-copy p { font-size: 14px; color: var(--txt); line-height: 1.92; margin-bottom: 18px; }
     .men-copy p:last-of-type { margin-bottom: 36px; }
-    .men-vis {
-      position: relative; aspect-ratio: 3/4; overflow: hidden;
-      background: var(--ink-soft);
-    }
-    .men-vis::after {
-      content: ''; position: absolute;
-      top: 18px; right: -18px; bottom: -18px; left: 18px;
-      border: 1px solid rgba(184,146,74,.08); pointer-events: none;
-    }
-    .men-vis-inner {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #262421, #1a1816);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .men-vis-inner p {
-      font-family: var(--fh); font-style: italic; font-size: 12px;
-      color: rgba(184,146,74,.15);
-    }
+    .men-vis { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+    .men-vis img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .men-vis::after { content: ''; position: absolute; top: 18px; right: -18px; bottom: -18px; left: 18px; border: 1px solid rgba(184,146,74,.12); pointer-events: none; }
 
-    /* ── TESTIMONIALS ── */
-    .s-test { padding: 136px 56px; background: var(--linen); }
+    /* TESTIMONIALS */
+    .s-test { padding: 136px 56px; background: var(--ivory); }
     .test-hd { max-width: 1280px; margin: 0 auto 72px; text-align: center; }
-    .test-hd h2 {
-      font-family: var(--fh);
-      font-size: clamp(32px, 4vw, 48px);
-      font-weight: 300; color: var(--ink);
-    }
+    .test-hd h2 { font-family: var(--fh); font-size: clamp(32px, 4vw, 48px); font-weight: 300; color: var(--ink); }
     .test-hd h2 em { font-style: italic; color: var(--gold); }
-    .test-grid {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 1px; background: rgba(168,152,128,.2);
-    }
-    .test-card {
-      background: var(--ivory); padding: 48px 38px; position: relative;
-    }
-    .test-card::before {
-      content: '\201C'; font-family: var(--fh);
-      font-size: 64px; color: var(--gold); opacity: .1;
-      position: absolute; top: 20px; left: 28px; line-height: 1;
-    }
-    .test-card p {
-      font-family: var(--fh); font-size: 16px; font-style: italic;
-      color: var(--ink); line-height: 1.72;
-      margin-bottom: 24px; position: relative; z-index: 1;
-    }
-    .test-attr {
-      font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
-    }
-    .test-ph {
-      font-size: 11px; color: var(--txt-lt); font-style: italic;
-    }
+    .test-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(168,152,128,.2); }
+    .test-card { background: var(--ivory); padding: 48px 38px; position: relative; }
+    .test-card::before { content: '\201C'; font-family: var(--fh); font-size: 64px; color: var(--gold); opacity: .1; position: absolute; top: 20px; left: 28px; line-height: 1; }
+    .test-card p { font-family: var(--fh); font-size: 16px; font-style: italic; color: var(--ink); line-height: 1.72; margin-bottom: 24px; position: relative; z-index: 1; }
+    .test-ph { font-size: 11px; color: var(--txt-lt); font-style: italic; }
 
-    /* ── LIRA ── */
-    .s-lira {
-      padding: 64px 56px;
-      background: var(--ivory);
-      border-top: 1px solid rgba(168,152,128,.18);
-      border-bottom: 1px solid rgba(168,152,128,.18);
-    }
-    .lira-flex {
-      max-width: 1280px; margin: 0 auto;
-      display: flex; align-items: center; gap: 48px;
-    }
-    .lira-lbl {
-      font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
-      color: var(--txt-lt); white-space: nowrap; flex-shrink: 0;
-    }
-    .lira-sep {
-      width: 1px; height: 32px;
-      background: rgba(168,152,128,.3); flex-shrink: 0;
-    }
-    .lira-quote {
-      font-family: var(--fh); font-size: 17px; font-style: italic;
-      color: var(--ink); line-height: 1.6;
-    }
+    /* LIRA */
+    .s-lira { padding: 64px 56px; background: var(--cream); border-top: 1px solid rgba(168,152,128,.18); border-bottom: 1px solid rgba(168,152,128,.18); }
+    .lira-flex { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 48px; }
+    .lira-lbl { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--txt-lt); white-space: nowrap; flex-shrink: 0; }
+    .lira-sep { width: 1px; height: 32px; background: rgba(168,152,128,.3); flex-shrink: 0; }
+    .lira-quote { font-family: var(--fh); font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.6; }
     .lira-quote strong { font-style: normal; font-weight: 500; color: var(--gold); }
 
-    /* ── BOOKING ── */
-    .s-book {
-      padding: 160px 56px;
-      background: var(--cream); text-align: center;
-    }
-    .book-inner { max-width: 540px; margin: 0 auto; }
-    .book-inner h2 {
-      font-family: var(--fh);
-      font-size: clamp(40px, 5.5vw, 68px);
-      font-weight: 300; color: var(--ink); line-height: 1.06; margin-bottom: 22px;
-    }
-    .book-inner h2 em { font-style: italic; color: var(--gold); }
-    .book-inner p {
-      font-size: 14px; color: var(--txt); line-height: 1.88; margin-bottom: 44px;
-    }
+    /* BOOKING */
+    .s-book { padding: 160px 56px; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+    .s-book-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephwalking.JPG'); background-size: cover; background-position: center 30%; opacity: .12; }
+    .book-inner { position: relative; z-index: 2; max-width: 540px; margin: 0 auto; }
+    .book-inner h2 { font-family: var(--fh); font-size: clamp(40px, 5.5vw, 68px); font-weight: 300; color: var(--ivory); line-height: 1.06; margin-bottom: 22px; }
+    .book-inner h2 em { font-style: italic; color: var(--gold-lt); }
+    .book-inner p { font-size: 14px; color: rgba(250,247,242,.48); line-height: 1.88; margin-bottom: 44px; }
     .book-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .book-lic {
-      margin-top: 36px; font-size: 9px; letter-spacing: .14em; color: var(--txt-lt);
-    }
+    .book-lic { margin-top: 36px; font-size: 9px; letter-spacing: .14em; color: rgba(250,247,242,.22); }
 
-    /* ── FOOTER ── */
-    footer { background: var(--ink); padding: 80px 56px 40px; }
-    .ft-top {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 56px; padding-bottom: 56px;
-      border-bottom: 1px solid rgba(250,247,242,.05);
-    }
-    .ft-logo {
-      font-family: var(--fh); font-size: 18px; font-weight: 400;
-      color: var(--ivory); letter-spacing: .07em;
-      display: block; margin-bottom: 14px;
-    }
+    /* FOOTER */
+    footer { background: var(--ink); padding: 80px 56px 40px; border-top: 1px solid rgba(250,247,242,.04); }
+    .ft-top { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(250,247,242,.05); }
+    .ft-logo { font-family: var(--fh); font-size: 18px; font-weight: 400; color: var(--ivory); letter-spacing: .07em; display: block; margin-bottom: 14px; }
     .ft-logo em { font-style: normal; color: var(--gold); }
-    .ft-brand p {
-      font-size: 12px; color: rgba(250,247,242,.3);
-      line-height: 1.85; max-width: 252px; margin-bottom: 20px;
-    }
-    .ft-contact a {
-      display: block; font-size: 12px; color: rgba(250,247,242,.38);
-      margin-bottom: 6px; transition: color .3s;
-    }
+    .ft-brand p { font-size: 12px; color: rgba(250,247,242,.3); line-height: 1.85; max-width: 252px; margin-bottom: 20px; }
+    .ft-contact a { display: block; font-size: 12px; color: rgba(250,247,242,.38); margin-bottom: 6px; transition: color .3s; }
     .ft-contact a:hover { color: var(--gold-lt); }
-    .ft-col h4 {
-      font-size: 8px; letter-spacing: .3em; text-transform: uppercase;
-      color: var(--gold); opacity: .7; margin-bottom: 18px;
-    }
+    .ft-col h4 { font-size: 8px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: 18px; }
     .ft-col ul { list-style: none; }
     .ft-col ul li { margin-bottom: 8px; }
-    .ft-col ul li a {
-      font-size: 12px; color: rgba(250,247,242,.32); transition: color .3s;
-    }
+    .ft-col ul li a { font-size: 12px; color: rgba(250,247,242,.32); transition: color .3s; }
     .ft-col ul li a:hover { color: var(--ivory); }
     .ft-seo { max-width: 1280px; margin: 28px auto 0; }
-    .ft-seo p {
-      font-size: 10px; color: rgba(250,247,242,.11);
-      line-height: 1.75; margin-bottom: 12px;
-    }
-    .ft-btm {
-      max-width: 1280px; margin: 22px auto 0;
-      padding-top: 22px; border-top: 1px solid rgba(250,247,242,.04);
-      display: flex; justify-content: space-between;
-      align-items: flex-start; flex-wrap: wrap; gap: 12px;
-    }
+    .ft-seo p { font-size: 10px; color: rgba(250,247,242,.11); line-height: 1.75; margin-bottom: 12px; }
+    .ft-btm { max-width: 1280px; margin: 22px auto 0; padding-top: 22px; border-top: 1px solid rgba(250,247,242,.04); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
     .ft-copy { font-size: 10px; color: rgba(250,247,242,.16); letter-spacing: .06em; }
     .ft-disc { font-size: 10px; color: rgba(250,247,242,.11); max-width: 520px; line-height: 1.65; }
 
-    /* ── FLOAT ── */
-    .float-btn {
-      position: fixed; bottom: 28px; right: 28px; z-index: 199;
-      background: var(--gold); color: var(--ivory);
-      font-family: var(--fb); font-size: 8px; font-weight: 500;
-      letter-spacing: .24em; text-transform: uppercase;
-      padding: 12px 22px; cursor: pointer;
-      box-shadow: 0 8px 30px rgba(24,23,21,.22);
-      transition: background .35s, color .35s, transform .35s;
-    }
-    .float-btn:hover { background: var(--ink); transform: translateY(-2px); }
+    /* FLOAT */
+    .float-btn { position: fixed; bottom: 28px; right: 28px; z-index: 199; background: var(--gold); color: var(--ivory); font-family: var(--fb); font-size: 8px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; box-shadow: 0 8px 30px rgba(24,23,21,.22); transition: background .35s, color .35s, transform .35s; }
+    .float-btn:hover { background: var(--ink-soft); transform: translateY(-2px); }
 
-    /* ── KEYFRAMES ── */
-    @keyframes riseUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; } to { opacity: 1; }
-    }
-    @keyframes breathe {
-      0%,100% { opacity: .25; } 50% { opacity: .9; }
-    }
+    /* ANIMATIONS */
+    @keyframes riseUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes breathe { 0%,100% { opacity: .25; } 50% { opacity: .9; } }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 1100px) {
       .svc-grid { grid-template-columns: repeat(2,1fr); }
       .why-grid { grid-template-columns: repeat(2,1fr); }
@@ -813,14 +435,14 @@
     @media (max-width: 768px) {
       nav { padding: 15px 22px; }
       .nav-links { display: none; }
-      .hero-inner { grid-template-columns: 1fr; padding: 112px 22px 80px; gap: 44px; }
-      .hero-photo-col { display: none; }
+      .hero-inner { padding: 110px 22px 80px; }
       .hero-h1 { font-size: 44px; }
-      .s-intro,.s-services,.s-why,.s-pmu,.s-men,.s-test,.s-book,.s-lira,.s-onco,.s-pull {
-        padding: 80px 22px;
-      }
+      .s-intro,.s-services,.s-why,.s-pmu,.s-men,.s-test,.s-book,.s-lira,.s-onco,.s-pull { padding: 80px 22px; }
       .intro-wrap,.onco-wrap,.pmu-wrap,.men-wrap { grid-template-columns: 1fr; gap: 48px; }
       .intro-badge { left: 0; }
+      .tan-wrap { grid-template-columns: 1fr; }
+      .tan-photo { aspect-ratio: 4/3; }
+      .tan-copy { padding: 48px 22px; }
       .svc-grid,.why-grid { grid-template-columns: 1fr; }
       .svc-header { flex-direction: column; align-items: flex-start; gap: 22px; }
       .lira-flex { flex-direction: column; gap: 18px; text-align: center; }
@@ -860,50 +482,35 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO — stephchairfull as background -->
   <section class="hero">
-    <div class="hero-warm"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-vline"></div>
     <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-eyebrow">
-          <span>Roseville, CA &nbsp;·&nbsp; Licensed Esthetician</span>
-        </div>
-        <h1 class="hero-h1">Your skin<br>deserves <em>this.</em></h1>
-        <p class="hero-sub">Precision skincare, permanent makeup, and wellness treatments — personally crafted for every client, every time. Serving Roseville, Rocklin, Granite Bay &amp; Loomis.</p>
-        <div class="hero-btns">
-          <a href="https://theoasis916.com/book" class="btn-gold">Book Your Appointment</a>
-          <a href="https://theoasis916.com/permanent-makeup" class="btn-ghost-lt">Explore Permanent Makeup</a>
-        </div>
-      </div>
-      <div class="hero-photo-col">
-        <div class="hero-frame">
-          <div class="hero-frame-inner"><p>Your photo here</p></div>
-        </div>
-        <div class="hero-tag">
-          <span class="tn">12+</span>
-          <span class="tl">Years serving clients</span>
-        </div>
+      <div class="hero-eyebrow"><span>Roseville, CA &nbsp;·&nbsp; Licensed Esthetician</span></div>
+      <h1 class="hero-h1">Your skin<br>deserves <em>this.</em></h1>
+      <p class="hero-sub">Precision skincare, permanent makeup, and wellness treatments — personally crafted for every client, every time. Serving Roseville, Rocklin, Granite Bay &amp; Loomis.</p>
+      <div class="hero-btns">
+        <a href="https://theoasis916.com/book" class="btn-gold">Book Your Appointment</a>
+        <a href="https://theoasis916.com/permanent-makeup" class="btn-ghost-lt">Explore Permanent Makeup</a>
       </div>
     </div>
-    <div class="hero-scroll">
-      <span>Discover</span>
-      <div class="scroll-line"></div>
-    </div>
+    <div class="hero-scroll"><span>Discover</span><div class="scroll-line"></div></div>
   </section>
 
   <!-- TRUST BAR -->
   <div class="trust-bar">
     <div class="trust-inner">
-      <div class="t-item"><div class="t-sep"></div>CA Lic. #Z174152</div>
-      <div class="t-item"><div class="t-sep"></div>Oncology Certified</div>
-      <div class="t-item"><div class="t-sep"></div>Permanent Makeup Certified</div>
-      <div class="t-item"><div class="t-sep"></div>Lira Clinical Partner</div>
-      <div class="t-item"><div class="t-sep"></div>Placer County</div>
+      <div class="t-item"><div class="t-dot"></div>CA Lic. #Z174152</div>
+      <div class="t-item"><div class="t-dot"></div>Oncology Certified</div>
+      <div class="t-item"><div class="t-dot"></div>Permanent Makeup Certified</div>
+      <div class="t-item"><div class="t-dot"></div>Lira Clinical Partner</div>
+      <div class="t-item"><div class="t-dot"></div>Placer County</div>
     </div>
   </div>
 
-  <!-- INTRO -->
+  <!-- INTRO — stephhalfbody -->
   <section class="s-intro">
     <div class="intro-wrap">
       <div class="intro-copy">
@@ -916,7 +523,8 @@
       </div>
       <div class="intro-visual">
         <div class="intro-img">
-          <div class="intro-img-inner"><p>Your photo here</p></div>
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephhalfbody.JPG"
+               alt="Stephanie Dandini, Licensed Esthetician at The Oasis Skincare & Wellness in Roseville, CA" />
         </div>
         <div class="intro-badge">
           <span>CA Lic. #Z174152</span>
@@ -926,18 +534,16 @@
     </div>
   </section>
 
-  <!-- EDITORIAL PULL QUOTE -->
+  <!-- PULL QUOTE -->
   <section class="s-pull">
     <div class="pull-inner">
       <span class="rule"></span>
-      <blockquote>
-        "Skincare should feel like a <em>ritual</em>, not a routine. Every client who walks through the door deserves to be seen — and to leave transformed."
-      </blockquote>
+      <blockquote>"Skincare should feel like a <em>ritual</em>, not a routine. Every client who walks through the door deserves to be seen — and to leave transformed."</blockquote>
       <cite>Stephanie Dandini &nbsp;·&nbsp; The Oasis Skincare &amp; Wellness</cite>
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- SERVICES — with real photos -->
   <section class="s-services">
     <div class="svc-header">
       <div>
@@ -947,52 +553,95 @@
       <a href="https://theoasis916.com/book" class="btn-ink">Book an Appointment</a>
     </div>
     <div class="svc-grid">
+
       <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/flowersmakeupbrush.JPG"
+               alt="Permanent makeup tools and flowers — The Oasis Skincare & Wellness" />
+        </div>
         <div class="svc-card-line"></div>
-        <span class="svc-num">01</span>
-        <h3>Permanent Makeup</h3>
-        <p>Microblading, ombre brows, lip blushing, and more — applied with precision and designed to look naturally beautiful on your face, not a template.</p>
-        <a href="https://theoasis916.com/permanent-makeup" class="svc-arrow">Learn More</a>
+        <div class="svc-card-body">
+          <span class="svc-num">01</span>
+          <h3>Permanent Makeup</h3>
+          <p>Microblading, ombre brows, lip blushing, and more — precision work designed around your face, not a template.</p>
+          <a href="https://theoasis916.com/permanent-makeup" class="svc-arrow">Learn More</a>
+        </div>
       </div>
+
       <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/facialbrushsteph.JPG"
+               alt="Facial treatment at The Oasis Skincare & Wellness Roseville" />
+        </div>
         <div class="svc-card-line"></div>
-        <span class="svc-num">02</span>
-        <h3>Women's Services</h3>
-        <p>Custom facials, dermaplaning, waxing, and spray tanning — each protocol built around your skin's specific needs and goals.</p>
-        <a href="https://theoasis916.com/womens-services" class="svc-arrow">Learn More</a>
+        <div class="svc-card-body">
+          <span class="svc-num">02</span>
+          <h3>Women's Services</h3>
+          <p>Custom facials, dermaplaning, waxing, and spray tanning — each protocol built around your skin's specific needs.</p>
+          <a href="https://theoasis916.com/womens-services" class="svc-arrow">Learn More</a>
+        </div>
       </div>
+
       <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephchair.JPG"
+               alt="Stephanie Dandini esthetician Roseville CA" />
+        </div>
         <div class="svc-card-line"></div>
-        <span class="svc-num">03</span>
-        <h3>Men's Services</h3>
-        <p>Quality skincare without the runaround. Men are genuinely welcomed at The Oasis Skincare &amp; Wellness — no explanation required.</p>
-        <a href="https://theoasis916.com/mens-services" class="svc-arrow">Learn More</a>
+        <div class="svc-card-body">
+          <span class="svc-num">03</span>
+          <h3>Men's Services</h3>
+          <p>Quality skincare without the runaround. Men are genuinely welcomed at The Oasis Skincare &amp; Wellness.</p>
+          <a href="https://theoasis916.com/mens-services" class="svc-arrow">Learn More</a>
+        </div>
       </div>
+
       <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephbrownoutfit.JPG"
+               alt="Teen skincare consultation at The Oasis Skincare & Wellness" />
+        </div>
         <div class="svc-card-line"></div>
-        <span class="svc-num">04</span>
-        <h3>Teen Skincare</h3>
-        <p>Acne, corrective care, gentle treatments, and prom preparation — designed specifically for younger skin and the challenges it faces.</p>
-        <a href="https://theoasis916.com/teen-services" class="svc-arrow">Learn More</a>
+        <div class="svc-card-body">
+          <span class="svc-num">04</span>
+          <h3>Teen Skincare</h3>
+          <p>Acne, corrective care, gentle treatments, and prom preparation — designed specifically for younger skin.</p>
+          <a href="https://theoasis916.com/teen-services" class="svc-arrow">Learn More</a>
+        </div>
       </div>
+
       <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephstanding.JPG"
+               alt="Oncology skincare Roseville CA — The Oasis Skincare & Wellness" />
+        </div>
         <div class="svc-card-line"></div>
-        <span class="svc-num">05</span>
-        <h3>Oncology Skincare</h3>
-        <p>Certified oncology esthetics for clients navigating cancer treatment — safe, thoughtful, and adapted to sensitive skin at every stage.</p>
-        <a href="https://theoasis916.com/oncology-skincare" class="svc-arrow">Learn More</a>
+        <div class="svc-card-body">
+          <span class="svc-num">05</span>
+          <h3>Oncology Skincare</h3>
+          <p>Certified oncology esthetics for clients navigating cancer treatment — safe, thoughtful, adapted for every stage.</p>
+          <a href="https://theoasis916.com/oncology-skincare" class="svc-arrow">Learn More</a>
+        </div>
       </div>
+
       <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/faceprofiletanning.JPG"
+               alt="Spray tanning Roseville CA — The Oasis Skincare & Wellness" />
+        </div>
         <div class="svc-card-line"></div>
-        <span class="svc-num">06</span>
-        <h3>Spray Tanning</h3>
-        <p>A flawless, even application using premium solutions — customized to your skin tone for results that look natural and last.</p>
-        <a href="https://theoasis916.com/spray-tanning" class="svc-arrow">Learn More</a>
+        <div class="svc-card-body">
+          <span class="svc-num">06</span>
+          <h3>Spray Tanning</h3>
+          <p>A flawless, even application using premium solutions — customized to your skin tone for results that look natural.</p>
+          <a href="https://theoasis916.com/spray-tanning" class="svc-arrow">Learn More</a>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ONCOLOGY — warm dark, no green -->
+  <!-- ONCOLOGY — stephwalking as visual -->
   <section class="s-onco">
     <div class="onco-wrap">
       <div class="onco-copy">
@@ -1008,11 +657,9 @@
         </ul>
         <a href="https://theoasis916.com/oncology-skincare" class="btn-ghost-lt">Learn About Oncology Care</a>
       </div>
-      <div class="onco-right">
-        <div class="onco-emblem">
-          <h3>Certified<br>Oncology<br>Esthetician</h3>
-          <span>Stephanie Dandini &nbsp;·&nbsp; Roseville, CA</span>
-        </div>
+      <div class="onco-visual">
+        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephwalking.JPG"
+             alt="Stephanie Dandini certified oncology esthetician Roseville CA" />
       </div>
     </div>
   </section>
@@ -1026,41 +673,34 @@
     </div>
     <div class="why-grid">
       <div class="why-card">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
         <h3>Root-Cause Care</h3>
         <p>Every treatment plan starts with understanding why your skin behaves the way it does — not just what's visible on the surface.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
-        </div>
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg></div>
         <h3>Everyone Is Welcome</h3>
-        <p>Women, men, teens, oncology clients — The Oasis Skincare &amp; Wellness was built to serve every person with equal expertise and care.</p>
+        <p>Women, men, teens, oncology clients — The Oasis Skincare &amp; Wellness was built to serve every person with equal expertise.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-        </div>
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
         <h3>Leave Educated</h3>
-        <p>You will always know what was done, why it was done, and how to maintain your results. Education is part of every appointment.</p>
+        <p>You will always know what was done, why it was done, and how to care for your skin between appointments.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-        </div>
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
         <h3>Continuously Certified</h3>
-        <p>Committed to ongoing education — so your treatments always reflect the most current, safe, and effective practices available.</p>
+        <p>Committed to ongoing education — so your treatments always reflect the most current, safe, and effective practices.</p>
       </div>
     </div>
   </section>
 
-  <!-- PMU -->
+  <!-- PMU — flowersmakeupbrush + stephchair -->
   <section class="s-pmu">
     <div class="pmu-wrap">
       <div class="pmu-vis">
-        <div class="pmu-vis-inner"><p>PMU portfolio photo</p></div>
+        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/flowersmakeupbrush.JPG"
+             alt="Permanent makeup tools — The Oasis Skincare & Wellness Roseville CA" />
       </div>
       <div class="pmu-copy">
         <span class="eyebrow">Permanent Makeup</span>
@@ -1082,7 +722,24 @@
     </div>
   </section>
 
-  <!-- MEN -->
+  <!-- SPRAY TAN FEATURE — full bleed editorial -->
+  <section class="s-tan">
+    <div class="tan-wrap">
+      <div class="tan-photo">
+        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/bougietanning.JPG"
+             alt="Spray tan results — The Oasis Skincare & Wellness Roseville CA" />
+      </div>
+      <div class="tan-copy">
+        <span class="eyebrow">Spray Tanning</span>
+        <h2>A tan that<br>looks like <em>you</em> —<br>not the bottle.</h2>
+        <p>Spray tanning at The Oasis Skincare &amp; Wellness is not one-size-fits-all. Your solution is chosen and customized based on your skin tone and undertones — so the result looks like you've been somewhere warm, not orange.</p>
+        <p>Stephanie uses premium solutions with skin care built in. Every application is flawless, every result is natural.</p>
+        <a href="https://theoasis916.com/spray-tanning" class="btn-gold">View Spray Tan Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEN — stephstanding -->
   <section class="s-men">
     <div class="men-wrap">
       <div class="men-copy">
@@ -1090,10 +747,11 @@
         <h2>You shouldn't have to<br>call around to find<br>a <em>yes.</em></h2>
         <p>Most esthetics studios weren't built with men in mind — and it shows. At The Oasis Skincare &amp; Wellness, men's services are a core part of what we do, treated with the same level of expertise and discretion as every other service offered.</p>
         <p>Whether it's a corrective facial, waxing, dermaplaning, or a spray tan — you will be served professionally, without judgment, and without having to explain yourself to get through the door.</p>
-        <a href="https://theoasis916.com/mens-services" class="btn-gold">Explore Men's Services</a>
+        <a href="https://theoasis916.com/mens-services" class="btn-ink">Explore Men's Services</a>
       </div>
       <div class="men-vis">
-        <div class="men-vis-inner"><p>Photo here</p></div>
+        <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephstanding.JPG"
+             alt="Professional esthetics studio — The Oasis Skincare & Wellness Roseville" />
       </div>
     </div>
   </section>
@@ -1130,16 +788,17 @@
     </div>
   </section>
 
-  <!-- BOOKING -->
+  <!-- BOOKING CTA — stephwalking subtle bg -->
   <section class="s-book">
+    <div class="s-book-bg"></div>
     <div class="book-inner">
       <span class="rule"></span>
-      <span class="eyebrow">Ready to Begin</span>
+      <span class="eyebrow" style="color:var(--gold);">Ready to Begin</span>
       <h2>Your skin has been<br><em>waiting</em> for this.</h2>
       <p>Book your appointment online in minutes through GlossGenius. New clients are always welcome. If you have questions about permanent makeup or any service, a complimentary phone consultation is available — just ask.</p>
       <div class="book-btns">
-        <a href="https://theoasis916.com/book" class="btn-ink">Book Your Appointment</a>
-        <a href="https://theoasis916.com/contact" class="btn-ghost">Send a Message</a>
+        <a href="https://theoasis916.com/book" class="btn-gold">Book Your Appointment</a>
+        <a href="https://theoasis916.com/contact" class="btn-ghost-lt">Send a Message</a>
       </div>
       <p class="book-lic">CA Esthetician License #Z174152 &nbsp;·&nbsp; 9071 Foothills Blvd Suite 3, Roseville, CA 95747</p>
     </div>
@@ -1206,9 +865,7 @@
 
   <script>
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
   </script>
 
 </body>
