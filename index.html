@@ -256,9 +256,8 @@
       width: 100%;
       max-width: 340px;
       height: auto;
-      /* White-inverted, very translucent — luxury watermark effect */
       filter: brightness(0) invert(1);
-      opacity: 0.18;
+      opacity: 0.42;
     }
 
     .hero-scroll {
@@ -384,8 +383,8 @@
     /* SPRAY TAN */
     .s-tan { background: var(--ink); overflow: hidden; }
     .tan-wrap { max-width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
-    .tan-photo { aspect-ratio: 1; overflow: hidden; }
-    .tan-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 5%; }
+    .tan-photo { aspect-ratio: 3/4; overflow: hidden; } /* taller to show full body */
+    .tan-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
     .tan-copy { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
     .tan-copy .eyebrow { color: rgba(176,154,136,.7); }
     .tan-copy h2 { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 300; color: var(--ivory); line-height: 1.15; margin-bottom: 22px; }
@@ -473,14 +472,15 @@
     @media (max-width: 768px) {
       nav { padding: 14px 22px; }
       .nav-links { display: none; }
-      .hero-inner { grid-template-columns: 1fr; padding: 110px 22px 80px; gap: 0; }
-      .hero-right { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding: 110px 22px 80px; gap: 28px; }
+      .hero-right { display: flex; justify-content: flex-start; }
+      .hero-logo-watermark { max-width: 200px; opacity: 0.38; }
       .hero-h1 { font-size: 44px; }
       .s-intro,.s-services,.s-why,.s-pmu,.s-men,.s-test,.s-book,.s-lira,.s-onco,.s-pull { padding: 80px 22px; }
       .intro-wrap,.onco-wrap,.pmu-wrap,.men-wrap { grid-template-columns: 1fr; gap: 48px; }
       .intro-badge { left: 0; }
       .tan-wrap { grid-template-columns: 1fr; }
-      .tan-photo { aspect-ratio: 4/3; }
+      .tan-photo { aspect-ratio: 3/4; }
       .tan-copy { padding: 48px 22px; }
       .svc-grid { grid-template-columns: repeat(2,1fr); }
       .why-grid { grid-template-columns: 1fr; }
