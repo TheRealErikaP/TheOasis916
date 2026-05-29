@@ -14,7 +14,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "The Oasis Skincare & Wellness",
-    "description": "Luxury esthetics studio in Roseville, CA offering permanent makeup, custom facials, men's services, teen skincare, spray tanning, dermaplaning, and oncology esthetics.",
+    "description": "Luxury esthetics studio in Roseville, CA offering permanent makeup, custom facials, men's services, teen skincare, spray tanning, dermaplaning, waxing, and oncology esthetics.",
     "url": "https://theoasis916.com",
     "telephone": "+19168658589",
     "email": "theoasisskincarewellness@gmail.com",
@@ -37,15 +37,16 @@
     :root {
       --ink:      #181715;
       --ink-soft: #2E2C29;
-      --sand:     #B09A88;      /* warm sandy taupe — not pink, not gold */
-      --sand-lt:  #C8B4A2;      /* lighter for italic highlights */
-      --sand-dk:  #927860;      /* darker for depth */
+      --sand:     #B09A88;
+      --sand-lt:  #C8B4A2;
+      --sand-dk:  #927860;
       --taupe:    #A89880;
       --cream:    #F5F0E8;
       --ivory:    #FAF7F2;
       --linen:    #EDE6DB;
       --txt:      #5A5450;
       --txt-lt:   #9C9088;
+      --gh:       'https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/';
       --fh:       'Cormorant Garamond', serif;
       --fb:       'Jost', sans-serif;
     }
@@ -65,7 +66,6 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* UTILITY */
     .eyebrow {
       font-family: var(--fb); font-size: 9px; font-weight: 400;
       letter-spacing: 0.32em; text-transform: uppercase;
@@ -110,10 +110,10 @@
     }
     .btn-sand:hover { background: transparent; color: var(--sand); }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      padding: 26px 56px;
+      padding: 20px 56px;
       display: flex; align-items: center; justify-content: space-between;
       transition: background .5s, padding .5s, border-color .5s;
       border-bottom: 1px solid transparent;
@@ -121,16 +121,22 @@
     nav.scrolled {
       background: rgba(245,240,232,.97);
       backdrop-filter: blur(12px);
-      padding: 15px 56px;
+      padding: 12px 56px;
       border-bottom-color: rgba(168,152,128,.2);
     }
-    .nav-logo {
-      font-family: var(--fh); font-size: 15px; font-weight: 400;
-      letter-spacing: .1em; color: var(--ivory);
-      transition: color .5s; line-height: 1.3; white-space: nowrap;
+
+    /* Logo image in nav */
+    .nav-logo-img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      /* on dark hero: transparent logo shows white version */
+      filter: brightness(0) invert(1); /* white on dark */
+      transition: filter .5s;
     }
-    nav.scrolled .nav-logo { color: var(--ink); }
-    .nav-logo em { font-style: normal; color: var(--sand); }
+    nav.scrolled .nav-logo-img {
+      filter: none; /* natural color on cream bg */
+    }
 
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links > li > a {
@@ -163,7 +169,7 @@
       transform: translateX(-50%) translateY(6px);
       background: var(--ivory); border-top: 1px solid var(--sand);
       box-shadow: 0 16px 48px rgba(24,23,21,.08);
-      min-width: 200px; opacity: 0; visibility: hidden;
+      min-width: 210px; opacity: 0; visibility: hidden;
       transition: opacity .35s, visibility .35s, transform .35s;
       list-style: none; padding: 10px 0;
     }
@@ -176,59 +182,101 @@
     .dropdown li a::after { display: none !important; }
     .dropdown li a:hover { color: var(--sand) !important; padding-left: 28px; }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh; position: relative;
       display: flex; align-items: center; overflow: hidden;
       background: var(--ink);
     }
+
+    /* Ambient background texture — stephchairfull very faint */
     .hero-bg {
       position: absolute; inset: 0;
       background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephchairfull.JPG');
       background-size: cover; background-position: center 15%;
-      opacity: 0.38;
+      opacity: 0.12;
     }
+
+    /* Dark gradient overlay */
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(105deg, rgba(24,23,21,.93) 0%, rgba(24,23,21,.72) 45%, rgba(24,23,21,.32) 100%);
+      background: linear-gradient(
+        to right,
+        rgba(24,23,21,.98) 0%,
+        rgba(24,23,21,.88) 40%,
+        rgba(24,23,21,.55) 65%,
+        rgba(24,23,21,.2) 100%
+      );
     }
+
+    /* Shadow silhouette of Steph — right side of hero */
+    .hero-silhouette {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 55%;
+      overflow: hidden;
+    }
+    .hero-silhouette img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      /* desaturated + very dark = ghostly editorial silhouette */
+      filter: grayscale(100%) brightness(0.18) contrast(1.1);
+      opacity: 0.85;
+    }
+    /* Feather the left edge so silhouette bleeds naturally into text area */
+    .hero-silhouette::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 50%;
+      background: linear-gradient(to right, var(--ink), transparent);
+      z-index: 1;
+    }
+
     .hero-vline {
       position: absolute; left: 56px; top: 18%; bottom: 18%;
       width: 1px;
       background: linear-gradient(to bottom, transparent, rgba(176,154,136,.2), transparent);
     }
+
     .hero-inner {
       position: relative; z-index: 2;
       padding: 150px 56px 110px;
       max-width: 1280px; margin: 0 auto; width: 100%;
     }
+
     .hero-eyebrow {
       display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .15s forwards;
     }
     .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--sand); flex-shrink: 0; }
     .hero-eyebrow span { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--sand); }
+
     .hero-h1 {
       font-family: var(--fh);
       font-size: clamp(52px, 7vw, 96px);
       font-weight: 300; line-height: 1.02; color: var(--ivory);
-      margin-bottom: 30px; max-width: 700px;
+      margin-bottom: 30px; max-width: 680px;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .3s forwards;
     }
     .hero-h1 em { font-style: italic; color: var(--sand-lt); }
+
     .hero-sub {
       font-size: 13px; color: rgba(250,247,242,.5);
-      line-height: 1.9; max-width: 420px; margin-bottom: 48px;
+      line-height: 1.9; max-width: 400px; margin-bottom: 48px;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .45s forwards;
     }
+
     .hero-btns {
       display: flex; gap: 14px; flex-wrap: wrap;
       opacity: 0; animation: riseUp .9s cubic-bezier(.22,1,.36,1) .6s forwards;
     }
+
     .hero-scroll {
       position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 10px;
-      opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
+      opacity: 0; animation: fadeIn 1s ease 1.5s forwards; z-index: 3;
     }
     .hero-scroll span { font-size: 8px; letter-spacing: .32em; text-transform: uppercase; color: rgba(250,247,242,.22); }
     .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, rgba(176,154,136,.6), transparent); animation: breathe 2.2s ease infinite; }
@@ -256,10 +304,17 @@
     }
     .intro-badge {
       position: absolute; bottom: -20px; left: -20px;
-      background: var(--ink); padding: 22px 26px; z-index: 2;
+      background: var(--ink); padding: 18px 22px; z-index: 2;
+      display: flex; align-items: center; gap: 14px;
     }
-    .intro-badge span { font-size: 8px; letter-spacing: .24em; text-transform: uppercase; color: var(--sand); display: block; margin-bottom: 5px; }
-    .intro-badge p { font-family: var(--fh); font-size: 14px; font-style: italic; color: var(--ivory); margin: 0; }
+    /* Small logo in badge */
+    .intro-badge img {
+      height: 28px; width: auto;
+      filter: brightness(0) invert(1);
+      opacity: .7;
+    }
+    .intro-badge-text span { font-size: 8px; letter-spacing: .24em; text-transform: uppercase; color: var(--sand); display: block; margin-bottom: 3px; }
+    .intro-badge-text p { font-family: var(--fh); font-size: 13px; font-style: italic; color: var(--ivory); margin: 0; }
 
     /* PULL QUOTE */
     .s-pull { padding: 96px 56px; background: var(--cream); text-align: center; border-top: 1px solid rgba(168,152,128,.18); border-bottom: 1px solid rgba(168,152,128,.18); }
@@ -268,34 +323,28 @@
     .pull-inner blockquote em { color: var(--sand); font-style: normal; }
     .pull-inner cite { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--taupe); font-style: normal; }
 
-    /* SERVICES */
+    /* SERVICES — 8 cards 4×2 */
     .s-services { padding: 136px 56px; background: var(--ivory); }
     .svc-header { max-width: 1280px; margin: 0 auto 72px; display: flex; justify-content: space-between; align-items: flex-end; }
     .svc-header h2 { font-family: var(--fh); font-size: clamp(34px, 4vw, 52px); font-weight: 300; color: var(--ink); line-height: 1.12; }
     .svc-header h2 em { font-style: italic; color: var(--sand); }
 
-    .svc-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(168,152,128,.15); }
+    .svc-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; background: rgba(168,152,128,.15);
+    }
     .svc-card { background: var(--ivory); overflow: hidden; position: relative; transition: background .4s; }
     .svc-card:hover { background: var(--linen); }
-
-    .svc-card-img {
-      height: 400px; /* tall enough to show full composition */
-      overflow: hidden; position: relative;
-    }
-    .svc-card-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center center; /* default — overridden per card below */
-      transition: transform .6s cubic-bezier(.22,1,.36,1);
-    }
-    .svc-card:hover .svc-card-img img { transform: scale(1.03); }
-
+    .svc-card-img { height: 300px; overflow: hidden; }
+    .svc-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center center; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .svc-card:hover .svc-card-img img { transform: scale(1.04); }
     .svc-card-line { height: 1px; background: var(--sand); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.22,1,.36,1); }
     .svc-card:hover .svc-card-line { transform: scaleX(1); }
-    .svc-card-body { padding: 28px 28px 34px; }
-    .svc-num { font-family: var(--fh); font-size: 10px; color: var(--sand); opacity: .45; letter-spacing: .18em; margin-bottom: 10px; display: block; }
-    .svc-card h3 { font-family: var(--fh); font-size: 22px; font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 10px; }
-    .svc-card p { font-size: 12px; color: var(--txt); line-height: 1.75; margin-bottom: 18px; }
+    .svc-card-body { padding: 24px 24px 30px; }
+    .svc-num { font-family: var(--fh); font-size: 10px; color: var(--sand); opacity: .4; letter-spacing: .18em; margin-bottom: 8px; display: block; }
+    .svc-card h3 { font-family: var(--fh); font-size: 20px; font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 8px; }
+    .svc-card p { font-size: 12px; color: var(--txt); line-height: 1.72; margin-bottom: 16px; }
     .svc-arrow { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--sand); display: flex; align-items: center; gap: 8px; transition: gap .35s; }
     .svc-arrow::after { content: '→'; }
     .svc-card:hover .svc-arrow { gap: 14px; }
@@ -386,21 +435,36 @@
     .lira-quote { font-family: var(--fh); font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.6; }
     .lira-quote strong { font-style: normal; font-weight: 500; color: var(--sand); }
 
-    /* BOOKING */
+    /* ── BOOKING — logo above headline ── */
     .s-book { padding: 160px 56px; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
-    .s-book-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephsidesmile.JPG'); background-size: cover; background-position: center 10%; opacity: .1; }
+    .s-book-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephsidesmile.JPG'); background-size: cover; background-position: center 10%; opacity: .08; }
     .book-inner { position: relative; z-index: 2; max-width: 540px; margin: 0 auto; }
+
+    /* Logo in booking section */
+    .book-logo {
+      height: 52px; width: auto;
+      margin: 0 auto 32px;
+      filter: brightness(0) invert(1);
+      opacity: 0.55;
+    }
+
     .book-inner h2 { font-family: var(--fh); font-size: clamp(40px, 5.5vw, 68px); font-weight: 300; color: var(--ivory); line-height: 1.06; margin-bottom: 22px; }
     .book-inner h2 em { font-style: italic; color: var(--sand-lt); }
     .book-inner p { font-size: 14px; color: rgba(250,247,242,.48); line-height: 1.88; margin-bottom: 44px; }
     .book-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .book-lic { margin-top: 36px; font-size: 9px; letter-spacing: .14em; color: rgba(250,247,242,.22); }
 
-    /* FOOTER */
+    /* ── FOOTER — logo above brand copy ── */
     footer { background: var(--ink); padding: 80px 56px 40px; border-top: 1px solid rgba(250,247,242,.04); }
     .ft-top { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(250,247,242,.05); }
-    .ft-logo { font-family: var(--fh); font-size: 18px; font-weight: 400; color: var(--ivory); letter-spacing: .07em; display: block; margin-bottom: 14px; }
-    .ft-logo em { font-style: normal; color: var(--sand); }
+
+    .ft-logo-img {
+      height: 40px; width: auto;
+      margin-bottom: 18px;
+      filter: brightness(0) invert(1);
+      opacity: 0.65;
+    }
+
     .ft-brand p { font-size: 12px; color: rgba(250,247,242,.3); line-height: 1.85; max-width: 252px; margin-bottom: 20px; }
     .ft-contact a { display: block; font-size: 12px; color: rgba(250,247,242,.38); margin-bottom: 6px; transition: color .3s; }
     .ft-contact a:hover { color: var(--sand-lt); }
@@ -415,11 +479,9 @@
     .ft-copy { font-size: 10px; color: rgba(250,247,242,.16); letter-spacing: .06em; }
     .ft-disc { font-size: 10px; color: rgba(250,247,242,.11); max-width: 520px; line-height: 1.65; }
 
-    /* FLOAT */
     .float-btn { position: fixed; bottom: 28px; right: 28px; z-index: 199; background: var(--sand); color: var(--ivory); font-family: var(--fb); font-size: 8px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; box-shadow: 0 8px 30px rgba(24,23,21,.22); transition: background .35s, transform .35s; }
     .float-btn:hover { background: var(--sand-dk); transform: translateY(-2px); }
 
-    /* ANIMATIONS */
     @keyframes riseUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes breathe { 0%,100% { opacity: .25; } 50% { opacity: .9; } }
@@ -432,8 +494,11 @@
       .ft-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
     @media (max-width: 768px) {
-      nav { padding: 15px 22px; }
+      nav { padding: 14px 22px; }
       .nav-links { display: none; }
+      .nav-logo-img { height: 34px; }
+      .hero-silhouette { width: 100%; opacity: 0.5; }
+      .hero-silhouette::before { width: 70%; }
       .hero-inner { padding: 110px 22px 80px; }
       .hero-h1 { font-size: 44px; }
       .s-intro,.s-services,.s-why,.s-pmu,.s-men,.s-test,.s-book,.s-lira,.s-onco,.s-pull { padding: 80px 22px; }
@@ -442,9 +507,10 @@
       .tan-wrap { grid-template-columns: 1fr; }
       .tan-photo { aspect-ratio: 4/3; }
       .tan-copy { padding: 48px 22px; }
-      .svc-grid,.why-grid { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: repeat(2,1fr); }
+      .why-grid { grid-template-columns: 1fr; }
       .svc-header { flex-direction: column; align-items: flex-start; gap: 22px; }
-      .svc-card-img { height: 300px; }
+      .svc-card-img { height: 240px; }
       .lira-flex { flex-direction: column; gap: 18px; text-align: center; }
       .lira-sep { width: 36px; height: 1px; }
       .trust-bar { padding: 14px 22px; }
@@ -455,13 +521,20 @@
       .book-btns,.pmu-btns { flex-direction: column; align-items: center; }
       .hero-btns { flex-direction: column; align-items: flex-start; }
     }
+    @media (max-width: 480px) {
+      .svc-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAV — logo image -->
   <nav id="nav">
-    <a href="https://theoasis916.com" class="nav-logo">The <em>Oasis</em> Skincare &amp; Wellness</a>
+    <a href="https://theoasis916.com">
+      <img class="nav-logo-img"
+           src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/TheOasisSkincareWellnesstransparent.png"
+           alt="The Oasis Skincare & Wellness — Roseville CA" />
+    </a>
     <ul class="nav-links">
       <li class="nav-item">
         <a href="https://theoasis916.com/services">Services</a>
@@ -472,6 +545,7 @@
           <li><a href="https://theoasis916.com/permanent-makeup">Permanent Makeup</a></li>
           <li><a href="https://theoasis916.com/spray-tanning">Spray Tanning</a></li>
           <li><a href="https://theoasis916.com/dermaplaning">Dermaplaning</a></li>
+          <li><a href="https://theoasis916.com/waxing">Waxing</a></li>
         </ul>
       </li>
       <li><a href="https://theoasis916.com/oncology-skincare">Oncology</a></li>
@@ -482,10 +556,17 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO — shadow silhouette of Steph on right -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
+
+    <!-- Steph silhouette — desaturated ghost on the right -->
+    <div class="hero-silhouette">
+      <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/stephstanding.JPG"
+           alt="" aria-hidden="true" />
+    </div>
+
     <div class="hero-vline"></div>
     <div class="hero-inner">
       <div class="hero-eyebrow"><span>Roseville, CA &nbsp;·&nbsp; Licensed Esthetician</span></div>
@@ -510,7 +591,7 @@
     </div>
   </div>
 
-  <!-- INTRO -->
+  <!-- INTRO — logo in badge -->
   <section class="s-intro">
     <div class="intro-wrap">
       <div class="intro-copy">
@@ -527,8 +608,12 @@
                alt="Stephanie Dandini, Licensed Esthetician at The Oasis Skincare & Wellness in Roseville, CA" />
         </div>
         <div class="intro-badge">
-          <span>CA Lic. #Z174152</span>
-          <p>Stephanie Dandini, LE</p>
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/TheOasisSkincareWellnesstransparent.png"
+               alt="The Oasis Skincare & Wellness logo" />
+          <div class="intro-badge-text">
+            <span>CA Lic. #Z174152</span>
+            <p>Stephanie Dandini, LE</p>
+          </div>
         </div>
       </div>
     </div>
@@ -543,7 +628,7 @@
     </div>
   </section>
 
-  <!-- SERVICES — new faceless photos -->
+  <!-- SERVICES — 8 cards 4×2 -->
   <section class="s-services">
     <div class="svc-header">
       <div>
@@ -556,91 +641,105 @@
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/permanent%20makeup.png"
-               alt="Permanent makeup Roseville CA — The Oasis Skincare & Wellness"
-               style="object-position: center center;" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/permanent%20makeup.png" alt="Permanent makeup Roseville CA" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
           <span class="svc-num">01</span>
           <h3>Permanent Makeup</h3>
-          <p>Microblading, ombre brows, lip blushing, and more — precision work designed around your face, not a template.</p>
+          <p>Microblading, ombre brows, lip blushing, and more — precision work designed around your face.</p>
           <a href="https://theoasis916.com/permanent-makeup" class="svc-arrow">Learn More</a>
         </div>
       </div>
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/ladyfacewash.png"
-               alt="Women's skincare services Roseville CA — The Oasis Skincare & Wellness"
-               style="object-position: center center;" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/ladyfacewash.png" alt="Women's skincare services Roseville CA" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
           <span class="svc-num">02</span>
           <h3>Women's Services</h3>
-          <p>Custom facials, dermaplaning, waxing, and spray tanning — each protocol built around your skin's specific needs.</p>
+          <p>Custom facials, dermaplaning, waxing, and spray tanning — each protocol built for your skin.</p>
           <a href="https://theoasis916.com/womens-services" class="svc-arrow">Learn More</a>
         </div>
       </div>
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/mens%20skincare.png"
-               alt="Men's skincare services Roseville CA — The Oasis Skincare & Wellness"
-               style="object-position: center center;" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/mens%20skincare.png" alt="Men's skincare services Roseville CA" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
           <span class="svc-num">03</span>
           <h3>Men's Services</h3>
-          <p>Quality skincare without the runaround. Men are genuinely welcomed at The Oasis Skincare &amp; Wellness.</p>
+          <p>Quality skincare without the runaround. Men are genuinely welcomed at The Oasis.</p>
           <a href="https://theoasis916.com/mens-services" class="svc-arrow">Learn More</a>
         </div>
       </div>
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/teenskincare.png"
-               alt="Teen skincare Roseville CA — The Oasis Skincare & Wellness"
-               style="object-position: center center;" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/teenskincare.png" alt="Teen skincare Roseville CA" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
           <span class="svc-num">04</span>
           <h3>Teen Skincare</h3>
-          <p>Acne, corrective care, gentle treatments, and prom preparation — designed specifically for younger skin.</p>
+          <p>Acne, corrective care, gentle treatments, and prom preparation — built for younger skin.</p>
           <a href="https://theoasis916.com/teen-services" class="svc-arrow">Learn More</a>
         </div>
       </div>
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/oncologyskincare.png"
-               alt="Oncology skincare Roseville CA — The Oasis Skincare & Wellness"
-               style="object-position: center center;" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/oncologyskincare.png" alt="Oncology skincare Roseville CA" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
           <span class="svc-num">05</span>
           <h3>Oncology Skincare</h3>
-          <p>Certified oncology esthetics for clients navigating cancer treatment — safe, thoughtful, adapted for every stage.</p>
+          <p>Certified oncology esthetics for clients navigating cancer treatment — safe and adapted.</p>
           <a href="https://theoasis916.com/oncology-skincare" class="svc-arrow">Learn More</a>
         </div>
       </div>
 
       <div class="svc-card">
         <div class="svc-card-img">
-          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/waxing.png"
-               alt="Spray tanning and waxing Roseville CA — The Oasis Skincare & Wellness"
-               style="object-position: center center;" />
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/spraytangun.JPG" alt="Spray tanning Roseville CA" />
         </div>
         <div class="svc-card-line"></div>
         <div class="svc-card-body">
           <span class="svc-num">06</span>
           <h3>Spray Tanning</h3>
-          <p>A flawless, even application using premium solutions — customized to your skin tone for results that look natural.</p>
+          <p>Premium solutions customized to your skin tone — results that look natural, not orange.</p>
           <a href="https://theoasis916.com/spray-tanning" class="svc-arrow">Learn More</a>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/deramplaneblade.JPG" alt="Dermaplaning Roseville CA" />
+        </div>
+        <div class="svc-card-line"></div>
+        <div class="svc-card-body">
+          <span class="svc-num">07</span>
+          <h3>Dermaplaning</h3>
+          <p>Manual exfoliation that removes dead skin and peach fuzz — instantly smoother, brighter skin.</p>
+          <a href="https://theoasis916.com/dermaplaning" class="svc-arrow">Learn More</a>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-card-img">
+          <img src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/waxing.png" alt="Waxing services Roseville CA" />
+        </div>
+        <div class="svc-card-line"></div>
+        <div class="svc-card-body">
+          <span class="svc-num">08</span>
+          <h3>Waxing</h3>
+          <p>Clean, precise hair removal for face and body — smooth results with minimal irritation.</p>
+          <a href="https://theoasis916.com/waxing" class="svc-arrow">Learn More</a>
         </div>
       </div>
 
@@ -701,7 +800,7 @@
     </div>
   </section>
 
-  <!-- PMU — stephsidesmile2, natural, no tool -->
+  <!-- PMU -->
   <section class="s-pmu">
     <div class="pmu-wrap">
       <div class="pmu-vis">
@@ -794,12 +893,13 @@
     </div>
   </section>
 
-  <!-- BOOKING -->
+  <!-- BOOKING — logo above headline -->
   <section class="s-book">
     <div class="s-book-bg"></div>
     <div class="book-inner">
-      <span class="rule"></span>
-      <span class="eyebrow" style="color:var(--sand);">Ready to Begin</span>
+      <img class="book-logo"
+           src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/TheOasisSkincareWellnesstransparent.png"
+           alt="The Oasis Skincare & Wellness" />
       <h2>Your skin has been<br><em>waiting</em> for this.</h2>
       <p>Book your appointment online in minutes through GlossGenius. New clients are always welcome. If you have questions about permanent makeup or any service, a complimentary phone consultation is available — just ask.</p>
       <div class="book-btns">
@@ -810,11 +910,13 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER — logo above copy -->
   <footer>
     <div class="ft-top">
       <div class="ft-brand">
-        <span class="ft-logo">The <em>Oasis</em> Skincare &amp; Wellness</span>
+        <img class="ft-logo-img"
+             src="https://raw.githubusercontent.com/TheRealErikaP/TheOasis916/main/TheOasisSkincareWellnesstransparent.png"
+             alt="The Oasis Skincare & Wellness" />
         <p>Luxury esthetics for every skin, every person, every stage of life. Serving Roseville, Rocklin, Granite Bay, and Loomis, CA.</p>
         <div class="ft-contact">
           <a href="tel:+19168658589">(916) 865-8589</a>
@@ -833,6 +935,7 @@
           <li><a href="https://theoasis916.com/oncology-skincare">Oncology Skincare</a></li>
           <li><a href="https://theoasis916.com/spray-tanning">Spray Tanning</a></li>
           <li><a href="https://theoasis916.com/dermaplaning">Dermaplaning</a></li>
+          <li><a href="https://theoasis916.com/waxing">Waxing</a></li>
         </ul>
       </div>
       <div class="ft-col">
@@ -858,7 +961,7 @@
       </div>
     </div>
     <div class="ft-seo">
-      <p>The Oasis Skincare &amp; Wellness provides professional esthetic services in Roseville, CA and the surrounding Placer County area including Rocklin, Granite Bay, and Loomis. Services include permanent makeup (microblading, ombre brows, lip blushing), custom facials, men's skincare, teen acne treatments, oncology esthetics, spray tanning, and dermaplaning. CA Licensed Esthetician #Z174152. Lira Clinical professional partner. Serving ZIP codes 95661, 95678, 95747, 95677, 95765, 95746, and 95650.</p>
+      <p>The Oasis Skincare &amp; Wellness provides professional esthetic services in Roseville, CA and the surrounding Placer County area including Rocklin, Granite Bay, and Loomis. Services include permanent makeup (microblading, ombre brows, lip blushing), custom facials, men's skincare, teen acne treatments, oncology esthetics, spray tanning, dermaplaning, and waxing. CA Licensed Esthetician #Z174152. Lira Clinical professional partner. Serving ZIP codes 95661, 95678, 95747, 95677, 95765, 95746, and 95650.</p>
     </div>
     <div class="ft-btm">
       <p class="ft-copy">&copy; 2026 The Oasis Skincare &amp; Wellness &nbsp;·&nbsp; Roseville, CA &nbsp;·&nbsp; theoasis916.com</p>
